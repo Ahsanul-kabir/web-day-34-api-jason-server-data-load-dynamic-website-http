@@ -31,8 +31,9 @@
         // const postInfo = {
         //     title: 'fooooooo',
         //     body: 'barrrr',
-        //     userId: 1
         // };
+        // nowPostServer(postInfo);
+
 
         function nowPostServer(postInfo) {
             fetch('https://jsonplaceholder.typicode.com/posts', {
@@ -40,7 +41,7 @@
                 body: JSON.stringify(postInfo),
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',
-                },
+                }
             })
 
             .then((response) => response.json())
