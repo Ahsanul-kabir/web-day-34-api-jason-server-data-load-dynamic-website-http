@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Send data to server, HTTP Post, JSON Stringify</h2>
+
+    <input id="title" type="text" placeholder="title">
+    <br> <br> <br>
+    <input id="bodyContent" type="text" placeholder="post er main jinis">
+    <br> <br> <br>
+    <button id="submit">Submit</button>
+
+
+    <script>
+        document.getElementById('submit').addEventListener('click', function() {
+            const title = document.getElementById('title').value;
+            const bodyContent = document.getElementById('bodyContent').value;
+            const post = {
+                title: title,
+                body: bodyContent
+            };
+            nowPostServer(post);
+        })
+
+        function nowPostServer(postInfo) {
+            fetch('https://jsonplaceholder.typicode.com/posts/1', {
+                    method: 'PUT',
+                    body: JSON.stringify(postInfo),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                    },
+                })
+                .then((response) => response.json())
+                .then((data) => console.log(data));
+        }
+    </script>
+
+
+    <!--
+    From : https://jsonplaceholder.typicode.com/guide/
+    ----------------------------------------------------------------------
+    fetch('https://jsonplaceholder.typicode.com/posts/1', {
+    method: 'PUT',
+    body: JSON.stringify({
+    id: 1,
+    title: 'foo',
+    body: 'bar',
+    userId: 1,
+    }),
+    headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+    },
+    })
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+    ----------------------------------------------------------------------
+    Output :
+    {
+    id: 1,
+    title: 'foo',
+    body: 'bar',
+    userId: 1
+    } -->
+</body>
+
+</html>
